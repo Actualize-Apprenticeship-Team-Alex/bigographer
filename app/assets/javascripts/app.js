@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       results: [],
       chartData: {
         
-      }
+      },
+      isActive: false,
     },
     mounted: function() {
 
@@ -48,6 +49,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
             };
           }.bind(this)
         });
+      },
+
+      toggleTextbox: function() {
+        console.log('works');
+        this.isActive = !this.isActive;
       }
 
     },

@@ -8,3 +8,23 @@
   border-style: none !important;
   border: solid 0px;
 }
+
+.button-container {
+  display: inline-block;  
+  bottom: 42px;
+  position: relative;
+
+}
+
+.text-container {
+  display: inline-block;
+}
+
+.active {
+  display: inline-block !important;
+}
+
+.text-container2 {
+  display: none;
+}
+
