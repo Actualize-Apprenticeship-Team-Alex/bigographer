@@ -27,9 +27,8 @@ class CodeAnalyzerTest < ActiveSupport::TestCase
   end
 
   test 'CodeAnalyzer will not count commented out code as a step' do 
-    code_analyzer = CodeAnalyzer.new("x = 0\n#x = 1")
-    p code_analyzer.code.lines
-    assert_equal 4, code_analyzer.code.lines.count
+    code_analyzer = CodeAnalyzer.new("x = 0\ny = 1\n#x=2")
+    assert_equal 6, code_analyzer.code.lines.count
   end 
 
 end
