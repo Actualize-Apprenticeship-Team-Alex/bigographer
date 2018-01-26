@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       options: {responsive: true, maintainAspectRatio: false},
       message: 'Submit Ruby Code Below',
       code: '',
+      code2: '',
       results: [],
       chartData: {
         
