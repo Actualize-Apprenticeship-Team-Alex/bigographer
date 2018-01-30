@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       },
 
       toggleTextbox: function() {
-        console.log('works');
         this.isActive = !this.isActive;
       }
 
