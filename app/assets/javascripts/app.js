@@ -31,12 +31,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
         Rails.ajax({
           url: "/api/v1/code",
           type: "POST",
-          data: `code=${this.code}`,
+          data: `code=${this.code}&code2=${this.code2}`,
           success: function(data) {
-            this.results = data.results;
-            this.chartData = {
+            // this.results = data.results;
+             this.chartData = {
               labels: data.results.map(point => point.x),
               datasets: [
+                {
+                  label: 'Number of steps',
+                  borderColor: '#f87979',
+                  backgroundColor: '#f87979',
+                  data: data.results,
+                  fill: false,
+                  lineTension: 1,
+                  cubicInterpolationMode: 'monotone'
+                },
                 {
                   label: 'Number of steps',
                   borderColor: '#f87979',
@@ -51,28 +60,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
           }.bind(this)
         });
 
-        Rails.ajax({
-          url: "/api/v1/code",
-          type: "POST",
-          data: `code2=${this.code2}`,
-          success: function(data) {
-            this.results = data.results;
-            this.chartData = {
-              labels: data.results.map(point => point.x),
-              datasets: [
-                {
-                  label: 'Number of steps',
-                  borderColor: '#f87979',
-                  backgroundColor: '#f87979',
-                  data: data.results,
-                  fill: false,
-                  lineTension: 1,
-                  cubicInterpolationMode: 'monotone'
-                }
-              ]
-            };
-          }.bind(this)
-        });
+        // Rails.ajax({
+        //   url: "/api/v1/code",
+        //   type: "POST",
+        //   data: `code2=${this.code2}`,
+        //   success: function(data) {
+        //     this.results = data.results;
+        //     this.chartData = {
+        //       labels: data.results.map(point => point.x),
+        //       datasets: [
+        //         {
+        //           label: 'Number of steps',
+        //           borderColor: '#f87979',
+        //           backgroundColor: '#f87979',
+        //           data: data.results,
+        //           fill: false,
+        //           lineTension: 1,
+        //           cubicInterpolationMode: 'monotone'
+        //         }
+        //       ]
+        //     };
+        //   }.bind(this)
+        // });
       },
       
 
