@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           type: "POST",
           data: `code=${this.code}&code2=${this.code2}`,
           success: function(data) {
+            console.log(data);
             // this.results = data.results;
              this.chartData = {
               labels: data.results.map(point => point.x),
@@ -47,10 +48,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
                   cubicInterpolationMode: 'monotone'
                 },
                 {
-                  label: 'Number of steps',
-                  borderColor: '#f87979',
-                  backgroundColor: '#f87979',
-                  data: data.results,
+                  label: 'Number of steps 2',
+                  borderColor: '#800080',
+                  backgroundColor: '#800080',
+                  data: data.results2,
                   fill: false,
                   lineTension: 1,
                   cubicInterpolationMode: 'monotone'
