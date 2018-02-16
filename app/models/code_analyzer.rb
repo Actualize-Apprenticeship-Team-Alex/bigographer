@@ -1,7 +1,7 @@
 class CodeAnalyzer
 
   attr_reader :code, :graph_data
-  
+
   def initialize(code='')
     @code = code
     add_counters_to_code!
@@ -9,7 +9,7 @@ class CodeAnalyzer
   end
 
   # The 'results' method is the brains behind the time complexity analysis.
-  # It looks to see whether the code contains [*], in which case the user is indicating 
+  # It looks to see whether the code contains [*], in which case the user is indicating
   # that they want to test multiple size arrays with the given algorithm.
   # The method then runs the submitted code with various size arrays, ranging from 100 up to 3000.
   # The data is saved as an array of x, y coordinates. x indicates the amount of data,
@@ -44,7 +44,7 @@ class CodeAnalyzer
 
   def add_counters_to_code!
     new_code = "count = 0\n"
-    @code.each_line do |line|
+    @code&.each_line do |line|
       new_code += "#{line}\n"
       new_code += "count += 1\n"
     end
