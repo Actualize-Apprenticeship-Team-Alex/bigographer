@@ -16,10 +16,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
       options: {responsive: true, maintainAspectRatio: false},
       message: 'Submit Ruby Code Below',
       code: '',
+      code2: '',
       results: [],
       chartData: {
         
-      }
+      },
+      isActive: false,
     },
     mounted: function() {
 
@@ -29,10 +31,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         Rails.ajax({
           url: "/api/v1/code",
           type: "POST",
-          data: `code=${this.code}`,
+          data: `code=${this.code}&code2=${this.code2}`,
           success: function(data) {
-            this.results = data.results;
-            this.chartData = {
+            console.log(data);
+             this.chartData = {
               labels: data.results.map(point => point.x),
               datasets: [
                 {
@@ -43,11 +45,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
                   fill: false,
                   lineTension: 1,
                   cubicInterpolationMode: 'monotone'
+                },
+                {
+                  label: 'Number of steps 2',
+                  borderColor: '#800080',
+                  backgroundColor: '#800080',
+                  data: data.results2,
+                  fill: false,
+                  lineTension: 1,
+                  cubicInterpolationMode: 'monotone'
                 }
               ]
             };
           }.bind(this)
         });
+      },
+
+
+      toggleTextbox: function() {
+        this.isActive = !this.isActive;
       }
 
     },
