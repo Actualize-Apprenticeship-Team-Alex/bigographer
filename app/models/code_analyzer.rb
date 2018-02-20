@@ -57,6 +57,8 @@ class CodeAnalyzer
       new_code += "#{line}\n"
       new_code += "count += 1\n"
     end
+    new_code += "count"
+    @code = new_code
   end
 
 end

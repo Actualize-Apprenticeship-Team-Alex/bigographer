@@ -24,9 +24,19 @@ class Api::V1::CodesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "Submitting actual code should return json hash containing the results of x, y coordinates" do
-    post "/api/v1/code", params: {code: "[*].each do |number|\nnumber\nend"}
+    post "/api/v1/code", params: {code: "[*].each do |number|\nnumber\nend", code2: ""}
     data = JSON.parse(response.body)
-    assert_equal data, {"results"=>[{"x"=>100, "y"=>201}, {"x"=>500, "y"=>1001}, {"x"=>1000, "y"=>2001}, {"x"=>1500, "y"=>3001}, {"x"=>2000, "y"=>4001}, {"x"=>2500, "y"=>5001}, {"x"=>3000, "y"=>6001}], "results2"=>[]}
+    assert_equal data, {
+      "results"=>[
+        {"x"=>100, "y"=>201},
+        {"x"=>500, "y"=>1001},
+        {"x"=>1000, "y"=>2001},
+        {"x"=>1500, "y"=>3001},
+        {"x"=>2000, "y"=>4001},
+        {"x"=>2500, "y"=>5001},
+        {"x"=>3000, "y"=>6001}
+      ],
+      "results2"=>[]}
   end
 
 end
