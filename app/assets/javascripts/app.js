@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
           data: `code=${this.code}&code2=${this.code2}`,
           success: function(data) {
             console.log(data);
-            // this.results = data.results;
              this.chartData = {
               labels: data.results.map(point => point.x),
               datasets: [
@@ -60,31 +59,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             };
           }.bind(this)
         });
-
-        // Rails.ajax({
-        //   url: "/api/v1/code",
-        //   type: "POST",
-        //   data: `code2=${this.code2}`,
-        //   success: function(data) {
-        //     this.results = data.results;
-        //     this.chartData = {
-        //       labels: data.results.map(point => point.x),
-        //       datasets: [
-        //         {
-        //           label: 'Number of steps',
-        //           borderColor: '#f87979',
-        //           backgroundColor: '#f87979',
-        //           data: data.results,
-        //           fill: false,
-        //           lineTension: 1,
-        //           cubicInterpolationMode: 'monotone'
-        //         }
-        //       ]
-        //     };
-        //   }.bind(this)
-        // });
       },
-      
+
 
       toggleTextbox: function() {
         this.isActive = !this.isActive;
