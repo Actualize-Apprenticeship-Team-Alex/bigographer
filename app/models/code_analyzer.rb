@@ -27,8 +27,6 @@ class CodeAnalyzer
         @graph_data << {x: number, y: run_code(@code.gsub("***", number.to_s))}
       end
     end
-
-
     return @graph_data
   end
 
