@@ -1,11 +1,13 @@
 class Api::V1::CodesController < ApplicationController
   def analyze
-    code_analyzer = CodeAnalyzer.new(params[:code])
-    code_analyzer2 = CodeAnalyzer.new(params[:code2])
+    code_blocks = []
+    code_blocks << params["1"]
+    code_blocks << params["2"]
 
-    results_hash = {results: code_analyzer.results} if params[:code]
-    results_hash[:results2] = code_analyzer2.results if params[:code2]
+    results = code_blocks.map do |code|
+      CodeAnalyzer.new(code).results
+    end
 
-    render json: results_hash
+    render json: results
   end
 end

@@ -17,11 +17,16 @@ class CodeAnalyzer
 
   def results
     if @code.index("[*]")
-      [100, 500, 1000, 1500, 2000, 2500, 3000].each do |data|
-        @graph_data << {x: data, y: run_code(@code.gsub("[*]", "#{(1..data).to_a}"))}
+      [100, 500, 1000, 1500, 2000, 2500, 3000].each do |number|
+        @graph_data << {x: number, y: run_code(@code.gsub("[*]", "#{(1..number).to_a}"))}
       end
     end
 
+    if @code.index("***")
+      [100, 500, 1000, 1500, 2000, 2500, 3000].each do |number|
+        @graph_data << {x: number, y: run_code(@code.gsub("***", number.to_s))}
+      end
+    end
     return @graph_data
   end
 
@@ -44,7 +49,7 @@ class CodeAnalyzer
 
   def add_counters_to_code!
     new_code = "count = 0\n"
-    @code&.each_line do |line|
+    @code.each_line do |line|
       new_code += "#{line}\n"
       new_code += "count += 1\n"
     end

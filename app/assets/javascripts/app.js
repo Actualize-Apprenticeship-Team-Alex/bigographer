@@ -1,5 +1,5 @@
 /* global Vue */
-document.addEventListener("DOMContentLoaded", function(event) { 
+document.addEventListener("DOMContentLoaded", function(event) {
   Vue.component('line-chart', {
     extends: VueChartJs.Line,
     mixins: [VueChartJs.mixins.reactiveProp],
@@ -7,19 +7,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
     mounted () {
       this.renderChart(this.chartData, this.options)
     }
-    
+
   })
 
   var app = new Vue({
     el: '#app',
     data: {
-      options: {responsive: true, maintainAspectRatio: false},
-      message: 'Submit Ruby Code Below',
       code: '',
       code2: '',
       results: [],
+      options: {responsive: true, maintainAspectRatio: false},
+      message: 'Submit Ruby Code Below',
       chartData: {
-        
+
       },
       isActive: false,
     },
@@ -31,17 +31,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
         Rails.ajax({
           url: "/api/v1/code",
           type: "POST",
-          data: `code=${this.code}&code2=${this.code2}`,
-          success: function(data) {
-            console.log(data);
+          data: `1=${this.code}&2=${this.code2}`,
+          success: function(response) {
              this.chartData = {
-              labels: data.results.map(point => point.x),
+              labels: response[0].map(point => point.x),
               datasets: [
                 {
                   label: 'Number of steps',
                   borderColor: '#f87979',
                   backgroundColor: '#f87979',
-                  data: data.results,
+                  data: response[0],
                   fill: false,
                   lineTension: 1,
                   cubicInterpolationMode: 'monotone'
@@ -50,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                   label: 'Number of steps 2',
                   borderColor: '#800080',
                   backgroundColor: '#800080',
-                  data: data.results2,
+                  data: response[1],
                   fill: false,
                   lineTension: 1,
                   cubicInterpolationMode: 'monotone'
