@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     mounted () {
       this.renderChart(this.chartData, this.options)
     }
-    
+
   })
 
   var app = new Vue({
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       options: {responsive: true, maintainAspectRatio: false},
       message: 'Submit Ruby Code Below',
       chartData: {
-        
+
       },
       isActive: false,
     },
@@ -28,10 +28,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     },
     methods: {
       analyzeCode: function() {
-        const code_blocks = {
-          1: this.code,
-          2: this.code2,
-        }
         Rails.ajax({
           url: "/api/v1/code",
           type: "POST",
